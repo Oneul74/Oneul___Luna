@@ -411,7 +411,6 @@
         calculate();
     }
 
-    // ⭐ 요청하신 정정된 수리비 로직이 적용된 부분입니다.
     function calculate() {
         const goldPrices = {}, silverPrices = {};
         document.querySelectorAll('.ing-input.gold').forEach(i => goldPrices[i.dataset.name.replace('gold-', '')] = unformatNumber(i.value));
@@ -422,9 +421,9 @@
         const profUser = parseInt(document.getElementById('user-proficiency').value) || 0;
 
         const repairStore = repairSettings.store ? 
-            Math.max(0, (0.5 - (0.003 * profStore))) * costPerDurability : 0;
+            Math.max(0, (0.4 - (0.003 * profStore))) * costPerDurability : 0;
         const repairUser = repairSettings.user ? 
-            Math.max(0, (0.5 - (0.003 * profUser))) * costPerDurability : 0;
+            Math.max(0, (0.4 - (0.003 * profUser))) * costPerDurability : 0;
 
         dishes.forEach((dish, i) => {
             let costGold = 0, costSilver = 0;
