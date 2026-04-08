@@ -8,23 +8,24 @@
         body { font-family: 'Apple SD Gothic Neo', sans-serif; background: #1a1a1a; color: #e0e0e0; padding: 15px; display: flex; flex-direction: column; align-items: center; font-size: 18px; margin: 0; }
         .container { background: #262626; padding: 40px; border-radius: 30px; box-shadow: 0 15px 60px rgba(0,0,0,0.9); width: 95%; max-width: 1250px; border: 1px solid #333; box-sizing: border-box; position: relative; }
         .main-title { text-align: center; width: 100%; margin-bottom: 30px; }
-        .neon-title { font-weight: bold; color: #fff; text-shadow: 0 0 10px #d4af37, 0 0 20px #d4af37; font-size: clamp(26px, 5vw, 36px); display: inline-block; margin-bottom: 25px; }
+        .neon-title { font-weight: bold; color: #fff; text-shadow: 0 0 10px #fbc727, 0 0 20px #fbc727; font-size: clamp(26px, 5vw, 36px); display: inline-block; margin-bottom: 25px; }
         
         .reset-master-btn { position: absolute; top: 40px; right: 40px; background: #ff4500; color: #fff; border: none; padding: 10px 20px; border-radius: 12px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 0 10px rgba(255, 69, 0, 0.3); z-index: 10; }
         .reset-master-btn:hover { background: #ff0000; transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 0, 0, 0.5); }
 
-        .sub-neon-title { font-weight: bold; color: #d4af37; text-shadow: 0 0 8px rgba(212, 175, 55, 0.6); font-size: 24px; margin: 20px 0 15px 0; }
+        .sub-neon-title { font-weight: bold; color: #fbc727; text-shadow: 0 0 8px rgba(212, 175, 55, 0.6); font-size: 24px; margin: 20px 0 15px 0; }
+        
         .tab-wrapper { display: flex; gap: 10px; margin-bottom: 35px; border-bottom: 3px solid #444; padding-bottom: 20px; justify-content: center; flex-wrap: wrap; }
         .tab-btn { background: #333; border: none; color: #888; padding: 15px 25px; border-radius: 15px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; }
-        .tab-btn.active { background: #d4af37; color: #1a1a1a; box-shadow: 0 0 15px #d4af37; }
+        .tab-btn.active { background: #fbc727; color: #1a1a1a; box-shadow: 0 0 15px #fbc727; }
         .tab-content { display: none; width: 100%; }
         .tab-content.active { display: block; }
         
-        .config-bar { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; border: 1px dashed #d4af37; }
+        .config-bar { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; flex-wrap: wrap; border: 1px dashed #fbc727; }
         .header-controls { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
         .batch-input { width: 90px !important; height: 35px; font-size: 15px !important; }
         .icon-btn { cursor: pointer; background: #444; border: 1px solid #555; color: #fff; padding: 6px 14px; border-radius: 10px; font-size: 15px; font-weight: bold; transition: 0.2s; }
-        .icon-btn:hover { background: #d4af37; color: #1a1a1a; box-shadow: 0 0 8px #d4af37; }
+        .icon-btn:hover { background: #fbc727; color: #1a1a1a; box-shadow: 0 0 8px #fbc727; }
         .repair-btn { background: #444; color: #ccc; border: 1px solid #666; padding: 8px 15px; border-radius: 10px; cursor: pointer; font-weight: bold; }
         .repair-btn.active { background: #ff4500; color: #fff; border-color: #ff4500; box-shadow: 0 0 10px rgba(255, 69, 0, 0.5); }
 
@@ -32,23 +33,22 @@
         @media (min-width: 1100px) { .price-grid { grid-template-columns: repeat(4, 1fr); } }
         
         .price-box { display: flex; flex-direction: column; gap: 8px; background: #3d3d3d; padding: 12px; border-radius: 15px; }
-        .price-box label { font-size: 16px; color: #d4af37; font-weight: bold; margin-bottom: 5px; text-align: center; }
+        .price-box label { font-size: 16px; color: #fbc727; font-weight: bold; margin-bottom: 5px; text-align: center; }
         .dual-input { display: flex; gap: 5px; }
         .dual-input div { display: flex; flex-direction: column; flex: 1; align-items: center; }
         .dual-input span { font-size: 11px; color: #888; margin-bottom: 3px; }
 
-        input[type="text"], input[type="number"] { background: #1a1a1a; border: 1px solid #444; color: #fff; padding: 8px; border-radius: 8px; font-size: 16px; outline: none; text-align: right; width: 100%; box-sizing: border-box; }
-        input:focus { border-color: #d4af37; background: #222; }
+        input[type="text"], input[type="number"], select { background: #1a1a1a; border: 1px solid #444; color: #fff; padding: 8px; border-radius: 8px; font-size: 16px; outline: none; text-align: right; width: 100%; box-sizing: border-box; }
+        input:focus, select:focus { border-color: #fbc727; background: #222; }
 
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type=number] { -moz-appearance: textfield; }
         
         .table-scroll { overflow-x: auto; width: 100%; }
         table { width: 100%; border-collapse: collapse; background: #2d2d2d; border-radius: 20px; margin-top: 20px; min-width: 900px; }
-        th { background: #3d3d3d; color: #d4af37; padding: 18px; font-size: 17px; }
+        th { background: #3d3d3d; color: #fbc727; padding: 18px; font-size: 17px; }
         td { padding: 15px; text-align: center; font-size: 18px; border-bottom: 1px solid #3d3d3d; }
-        .group-divider { border-bottom: 4px solid #d4af37 !important; } 
+        .group-divider { border-bottom: 4px solid #fbc727 !important; } 
         .dish-info { text-align: left; padding-left: 25px; }
         .recipe-text { font-size: 13px; color: #aaa; margin-top: 5px; display: block; line-height: 1.4; }
         .badge { font-size: 12px; padding: 3px 8px; border-radius: 6px; margin-right: 8px; font-weight: bold; }
@@ -57,9 +57,21 @@
         .b-master { background: #4a3a1e; color: #ffcc00; border: 1px solid #ffcc00; }
         .profit-pos { color: #46d160; font-weight: bold; }
         .profit-neg { color: #ff4500; font-weight: bold; }
-        .top-rank-neon { color: #fff !important; font-weight: bold !important; text-shadow: 0 0 10px #d4af37, 0 0 20px #d4af37 !important; }
+        .top-rank-neon { color: #fff !important; font-weight: bold !important; text-shadow: 0 0 10px #fbc727, 0 0 20px #fbc727 !important; }
         .apply-btn { font-weight: bold; color: #ffcc00; text-shadow: 0 0 10px #ffcc00; font-size: 20px; cursor: pointer; background: none; border: 2px solid #ffcc00; padding: 5px 15px; border-radius: 10px; margin-left: 20px; transition: 0.3s; }
         .apply-btn:hover { background: rgba(255, 204, 0, 0.2); }
+
+        .selector-bar { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; border: 1px dashed #fbc727; flex-wrap: wrap; }
+        .market-sub-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: flex-start; }
+        .sub-tab-btn { background: #444; border: 1px solid #555; color: #aaa; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .sub-tab-btn.active { background: #fbc727; color: #000; font-weight: bold; box-shadow: 0 0 10px #fbc727; }
+        .compare-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; width: 100%; }
+        .compare-card { background: #333; padding: 20px; border-radius: 20px; border-left: 5px solid #fbc727; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .stat-line { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 16px; }
+        .score-cell { font-weight: bold; color: #fbc727; font-size: 18px; }
+        .delete-btn { background: #662222 !important; border: 1px solid #993333 !important; }
+        .delete-btn:hover { background: #882222 !important; }
+        input[type="checkbox"] { width: 22px; height: 22px; accent-color: #fbc727; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -72,6 +84,7 @@
         <button class="tab-btn active" onclick="openTab('settings')">단가 설정</button>
         <button class="tab-btn" onclick="openTab('store-tab')">요리상점 판매</button>
         <button class="tab-btn" onclick="openTab('analysis')">유저 판매</button>
+        <button class="tab-btn" onclick="openTab('market-analysis')">시세 비교</button>
     </div>
 
     <div id="settings" class="tab-content active">
@@ -127,12 +140,10 @@
         </div> 
         <div class="setting-section">
             <span class="neon-title">🍲 커먼 요리</span>
-            <button class="apply-btn" onclick="highlightTop3('store-common')">적 용</button>
             <div class="table-scroll"><table><thead><tr><th style="width: 25%;">요리 정보</th><th style="width: 15%;">고정 판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-store-common"></tbody></table></div>
         </div>
         <div class="setting-section" style="margin-top: 40px;">
             <span class="neon-title">🥗 언커먼 요리</span>
-            <button class="apply-btn" onclick="highlightTop3('store-uncommon')">적 용</button>
             <div class="table-scroll"><table><thead><tr><th style="width: 25%;">요리 정보</th><th style="width: 15%;">고정 판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-store-uncommon"></tbody></table></div>
         </div>
     </div>
@@ -147,13 +158,81 @@
         </div>
         <div class="setting-section">
             <span class="neon-title">🍲 커먼 요리</span>
-            <button class="apply-btn" onclick="highlightTop3('common')">적 용</button>
+            <button class="apply-btn" onclick="highlightTop1('common')">적 용</button>
             <div class="table-scroll"><table><thead><tr><th style="width: 25%;">요리 정보</th><th style="width: 15%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-common"></tbody></table></div>
         </div>
         <div class="setting-section" style="margin-top: 40px;">
             <span class="neon-title">🥗 언커먼 요리</span>
-            <button class="apply-btn" onclick="highlightTop3('uncommon')">적 용</button>
+            <button class="apply-btn" onclick="highlightTop1('uncommon')">적 용</button>
             <div class="table-scroll"><table><thead><tr><th style="width: 25%;">요리 정보</th><th style="width: 15%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-uncommon"></tbody></table></div>
+        </div>
+    </div>
+
+    <div id="market-analysis" class="tab-content">
+        <div class="selector-bar">
+            <strong>🔍 대상 요리 선택:</strong>
+            <select id="main-dish-selector" onchange="syncDish(this.value)" style="flex:1; text-align: left;"></select>
+        </div>
+
+        <div class="market-sub-tabs">
+            <button id="btn-sub-my" class="sub-tab-btn active" onclick="openMarketSubTab('my-tab')">내 판매 관리</button>
+            <button id="btn-sub-market" class="sub-tab-btn" onclick="openMarketSubTab('market-tab')">시장 시세 기록</button>
+            <button id="btn-sub-analysis" class="sub-tab-btn" onclick="openMarketSubTab('analysis-tab')">종합 비교 분석</button>
+        </div>
+
+        <div id="my-tab" class="market-sub-content">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:20%;">요리명</th>
+                            <th style="width:20%;">지속시간</th>
+                            <th style="width:20%;">스탯 수치</th>
+                            <th style="width:20%;">판매가</th>
+                            <th style="width:20%;">효율</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="my-dish-name" style="font-weight:bold; color:#fbc727;">요리를 선택해주세요</td>
+                            <td><input type="number" id="my-dur" oninput="saveMarketData()" class="nav-i" data-row="1000" data-col="0"></td>
+                            <td><input type="number" id="my-stat" oninput="saveMarketData()" class="nav-i" data-row="1000" data-col="1"></td>
+                            <td><input type="number" id="my-price" oninput="saveMarketData()" class="nav-i" data-row="1000" data-col="2"></td>
+                            <td id="my-score" class="score-cell">0.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="market-tab" class="market-sub-content" style="display:none;">
+            <div style="margin:15px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap: wrap; gap:10px;">
+                <div style="font-size: 14px; color:#888;">* 체크한 항목만 종합 분석에 포함됩니다.</div>
+                <div style="display:flex; gap:10px; flex-wrap: wrap;">
+                    <button class="icon-btn" onclick="toggleAllCheck(true)">전체 선택</button>
+                    <button class="icon-btn" onclick="toggleAllCheck(false)">전체 해제</button>
+                    <button class="icon-btn delete-btn" onclick="clearSelectedRows()">선택 데이터 지우기</button>
+                </div>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:60px;">선택</th>
+                            <th style="width:20px;">No</th>
+                            <th style="width:22%;">지속시간</th>
+                            <th style="width:22%;">스탯 수치</th>
+                            <th style="width:22%;">판매가</th>
+                            <th style="width:15%;">효율</th>
+                        </tr>
+                    </thead>
+                    <tbody id="market-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="analysis-tab" class="market-sub-content" style="display:none;">
+            <div class="compare-grid" id="analysis-grid"></div>
         </div>
     </div>
 </div>
@@ -189,6 +268,14 @@
         { type: 'uncommon', name: "세비체", ings: { "블루탱": 1, "흰동가리": 1, "레몬": 3, "딸기": 3 } }
     ];
 
+    // 시세 비교 데이터 (3.html 로직)
+    const dishNames = dishes.map(d => d.name);
+    const ilpunDishes = dishNames
+        .filter(name => name !== "옥수수 착즙 주스" && name !== "무 착즙 주스")
+        .map(d => "일품 " + d);
+    const allMarketDishes = [...dishNames, ...ilpunDishes];
+    let marketDb = JSON.parse(localStorage.getItem('luna_db_v3')) || {};
+
     let repairSettings = { store: false, user: false };
 
     function formatNumber(n) { return Math.floor(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
@@ -212,7 +299,35 @@
             renderStoreGroup(dish, i, 'common', 'body-store-common');
             renderStoreGroup(dish, i, 'uncommon', 'body-store-uncommon');
         });
+
+        // [시세 비교 초기화]
+        const selector = document.getElementById('main-dish-selector');
+        allMarketDishes.forEach(d => {
+            selector.innerHTML += `<option value="${d}">${d}</option>`;
+            if (!marketDb[d]) {
+                marketDb[d] = { 
+                    my: {dur:0, stat:0, price:0}, 
+                    market: Array(20).fill().map(()=>({checked: true, dur:0, stat:0, price:0})) 
+                };
+            }
+        });
+
+        const mBody = document.getElementById('market-body');
+        for(let i=0; i<20; i++) {
+            mBody.innerHTML += `
+                <tr>
+                    <td><input type="checkbox" class="m-check" data-idx="${i}" onchange="saveMarketData()"></td>
+                    <td>${i+1}</td>
+                    <td><input type="number" class="m-dur nav-i" data-idx="${i}" data-row="${i+1001}" data-col="0" oninput="saveMarketData()"></td>
+                    <td><input type="number" class="m-stat nav-i" data-idx="${i}" data-row="${i+1001}" data-col="1" oninput="saveMarketData()"></td>
+                    <td><input type="number" class="m-price nav-i" data-idx="${i}" data-row="${i+1001}" data-col="2" oninput="saveMarketData()"></td>
+                    <td class="m-score score-cell">0.0</td>
+                </tr>`;
+        }
+        syncDish(allMarketDishes[0]);
+
         loadData();
+        bindNavigationKeys();
     }
 
     function renderIngInputs(containerId, list) {
@@ -360,8 +475,9 @@
     }
 
     function hardReset() {
-        if(confirm("모든 데이터를 초기화하시겠습니까?")) {
+        if(confirm("모든 데이터를 초기화하시겠습니까? (단가 및 시장 데이터 전체 포함)")) {
             localStorage.removeItem('luna_calc_v2');
+            localStorage.removeItem('luna_db_v3');
             location.reload();
         }
     }
@@ -384,7 +500,7 @@
         event.currentTarget.classList.add('active');
     }
 
-    function highlightTop3(type) {
+    function highlightTop1(type) {
         const containerId = type.includes('store') ? `body-${type}` : `body-${type}`;
         const cells = document.querySelectorAll(`#${containerId} [id^="p64-"]`);
         const profits = [];
@@ -395,6 +511,150 @@
         });
         const top3 = [...new Set(profits)].sort((a, b) => b - a).slice(0, 3);
         cells.forEach(c => { if (top3.includes(unformatNumber(c.innerText))) c.classList.add('top-rank-neon'); });
+    }
+
+    function syncDish(dishName) {
+        const data = marketDb[dishName];
+        document.getElementById('my-dish-name').innerText = dishName;
+        document.getElementById('my-dur').value = data.my.dur || '';
+        document.getElementById('my-stat').value = data.my.stat || '';
+        document.getElementById('my-price').value = data.my.price || '';
+        
+        const rows = document.querySelectorAll('#market-body tr');
+        data.market.forEach((m, i) => {
+            rows[i].querySelector('.m-check').checked = (m.checked !== false);
+            rows[i].querySelector('.m-dur').value = m.dur || '';
+            rows[i].querySelector('.m-stat').value = m.stat || '';
+            rows[i].querySelector('.m-price').value = m.price || '';
+        });
+        calculateMarket();
+    }
+
+    function saveMarketData() {
+        const dishName = document.getElementById('main-dish-selector').value;
+        marketDb[dishName].my = {
+            dur: parseFloat(document.getElementById('my-dur').value) || 0,
+            stat: parseFloat(document.getElementById('my-stat').value) || 0,
+            price: parseFloat(document.getElementById('my-price').value) || 0
+        };
+        const rows = document.querySelectorAll('#market-body tr');
+        rows.forEach((row, i) => {
+            marketDb[dishName].market[i] = {
+                checked: row.querySelector('.m-check').checked,
+                dur: parseFloat(row.querySelector('.m-dur').value) || 0,
+                stat: parseFloat(row.querySelector('.m-stat').value) || 0,
+                price: parseFloat(row.querySelector('.m-price').value) || 0
+            };
+        });
+        localStorage.setItem('luna_db_v3', JSON.stringify(marketDb));
+        calculateMarket();
+    }
+
+    function calculateMarket() {
+        const dishName = document.getElementById('main-dish-selector').value;
+        const data = marketDb[dishName];
+        const myScore = (data.my.dur * data.my.stat) / (data.my.price || 1);
+        document.getElementById('my-score').innerText = data.my.price > 0 ? myScore.toFixed(1) : "0.0";
+        const mRows = document.querySelectorAll('#market-body tr');
+        data.market.forEach((m, i) => {
+            const score = (m.dur * m.stat) / (m.price || 1);
+            mRows[i].querySelector('.m-score').innerText = m.price > 0 ? score.toFixed(1) : "0.0";
+        });
+    }
+
+    function clearSelectedRows() {
+        if(!confirm("체크된 항목의 데이터를 지우시겠습니까?")) return;
+        const rows = document.querySelectorAll('#market-body tr');
+        rows.forEach(row => {
+            const cb = row.querySelector('.m-check');
+            if(cb.checked) {
+                row.querySelector('.m-dur').value = '';
+                row.querySelector('.m-stat').value = '';
+                row.querySelector('.m-price').value = '';
+            }
+        });
+        saveMarketData();
+    }
+
+    function renderAnalysis() {
+        const grid = document.getElementById('analysis-grid');
+        grid.innerHTML = '';
+        allMarketDishes.forEach(d => {
+            const data = marketDb[d];
+            const myScore = (data.my.dur * data.my.stat) / (data.my.price || 1);
+            const mScores = data.market
+                .filter(m => m.checked && m.price > 0)
+                .map(m => (m.dur * m.stat) / m.price);
+                
+            const bestM = mScores.length > 0 ? Math.max(...mScores) : 0;
+            const avgM = mScores.length > 0 ? (mScores.reduce((a,b)=>a+b,0)/mScores.length) : 0;
+            
+            if (myScore > 0 || bestM > 0) {
+                const diff = myScore - bestM;
+                grid.innerHTML += `
+                    <div class="compare-card">
+                        <strong style="color:#fbc727; font-size:18px;">${d}</strong>
+                        <div style="margin-top:15px;">
+                            <div class="stat-line"><span>판매 요리 효율:</span> <strong>${myScore.toFixed(1)}</strong></div>
+                            <div class="stat-line"><span>시장 최고 효율:</span> <strong>${bestM.toFixed(1)}</strong></div>
+                            <div class="stat-line"><span>시장 평균 효율:</span> <strong>${avgM.toFixed(1)}</strong></div>
+                            <hr style="border:0; border-top:1px solid #444; margin: 10px 0;">
+                            <div class="stat-line">
+                                <span>최고 효율과 비교했을 때 내 요리의 경쟁력은?</span>
+                                <span style="font-weight:bold; color:${diff>=0?'#46d160':'#ff4500'}">${diff >= 0 ? '+' : ''}${diff.toFixed(1)}</span>
+                            </div>
+                        </div>
+                    </div>`;
+            }
+        });
+        if(grid.innerHTML === '') grid.innerHTML = '<div style="color:#888; text-align:center; width:100%;">분석할 데이터가 없습니다.</div>';
+    }
+
+    function toggleAllCheck(isSelected) {
+        document.querySelectorAll('.m-check').forEach(cb => cb.checked = isSelected);
+        saveMarketData();
+    }
+
+    function openMarketSubTab(id) {
+        document.querySelectorAll('.market-sub-content').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.sub-tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).style.display = 'block';
+        event.currentTarget.classList.add('active');
+        if(id === 'analysis-tab') renderAnalysis();
+    }
+
+    function bindNavigationKeys() {
+        document.addEventListener('keydown', (e) => {
+            const target = e.target;
+            // 시세 비교 분석 탭의 입력창(nav-i) 혹은 일반 입력창 모두 대응 가능하도록 설계
+            if(!target.classList.contains('nav-i') && target.type !== 'number' && target.type !== 'text') return;
+            
+            // row/col 데이터가 없는 기존 입력창들을 위해 기본값 설정
+            let row = parseInt(target.dataset.row) || 0;
+            let col = parseInt(target.dataset.col) || 0;
+            let nextTarget;
+
+            switch(e.key) {
+                case 'ArrowUp': 
+                    e.preventDefault();
+                    nextTarget = document.querySelector(`[data-row="${row - 1}"][data-col="${col}"]`); 
+                    break;
+                case 'ArrowDown': 
+                    e.preventDefault();
+                    nextTarget = document.querySelector(`[data-row="${row + 1}"][data-col="${col}"]`); 
+                    break;
+                case 'ArrowLeft': 
+                    nextTarget = document.querySelector(`[data-row="${row}"][data-col="${col - 1}"]`); 
+                    break;
+                case 'ArrowRight':
+                case 'Enter':
+                    e.preventDefault();
+                    nextTarget = document.querySelector(`[data-row="${row}"][data-col="${col + 1}"]`);
+                    if (!nextTarget) nextTarget = document.querySelector(`[data-row="${row + 1}"][data-col="0"]`);
+                    break;
+            }
+            if (nextTarget) nextTarget.focus();
+        });
     }
 
     window.onload = init;
