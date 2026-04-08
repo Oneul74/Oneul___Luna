@@ -268,7 +268,6 @@
         { type: 'uncommon', name: "세비체", ings: { "블루탱": 1, "흰동가리": 1, "레몬": 3, "딸기": 3 } }
     ];
 
-    // 시세 비교 데이터 (3.html 로직)
     const dishNames = dishes.map(d => d.name);
     const ilpunDishes = dishNames
         .filter(name => name !== "옥수수 착즙 주스" && name !== "무 착즙 주스")
@@ -300,7 +299,6 @@
             renderStoreGroup(dish, i, 'uncommon', 'body-store-uncommon');
         });
 
-        // [시세 비교 초기화]
         const selector = document.getElementById('main-dish-selector');
         allMarketDishes.forEach(d => {
             selector.innerHTML += `<option value="${d}">${d}</option>`;
@@ -413,15 +411,20 @@
         calculate();
     }
 
+    // ⭐ 요청하신 정정된 수리비 로직이 적용된 부분입니다.
     function calculate() {
         const goldPrices = {}, silverPrices = {};
         document.querySelectorAll('.ing-input.gold').forEach(i => goldPrices[i.dataset.name.replace('gold-', '')] = unformatNumber(i.value));
         document.querySelectorAll('.ing-input.silver').forEach(i => silverPrices[i.dataset.name.replace('silver-', '')] = unformatNumber(i.value));
 
+        const costPerDurability = 500 / 60;
         const profStore = parseInt(document.getElementById('store-proficiency').value) || 0;
         const profUser = parseInt(document.getElementById('user-proficiency').value) || 0;
-        const repairStore = repairSettings.store ? (0.5 - (0.003 * profStore)) : 0;
-        const repairUser = repairSettings.user ? (0.5 - (0.003 * profUser)) : 0;
+
+        const repairStore = repairSettings.store ? 
+            Math.max(0, (0.5 - (0.003 * profStore))) * costPerDurability : 0;
+        const repairUser = repairSettings.user ? 
+            Math.max(0, (0.5 - (0.003 * profUser))) * costPerDurability : 0;
 
         dishes.forEach((dish, i) => {
             let costGold = 0, costSilver = 0;
@@ -626,10 +629,8 @@
     function bindNavigationKeys() {
         document.addEventListener('keydown', (e) => {
             const target = e.target;
-            // 시세 비교 분석 탭의 입력창(nav-i) 혹은 일반 입력창 모두 대응 가능하도록 설계
             if(!target.classList.contains('nav-i') && target.type !== 'number' && target.type !== 'text') return;
             
-            // row/col 데이터가 없는 기존 입력창들을 위해 기본값 설정
             let row = parseInt(target.dataset.row) || 0;
             let col = parseInt(target.dataset.col) || 0;
             let nextTarget;
