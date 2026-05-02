@@ -44,9 +44,31 @@
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         input[type=number] { -moz-appearance: textfield; }
         
-        .table-scroll { overflow-x: auto; width: 100%; }
-        table { width: 100%; border-collapse: collapse; background: #2d2d2d; border-radius: 20px; margin-top: 20px; min-width: 900px; }
-        th { background: #3d3d3d; color: #fbc727; padding: 18px; font-size: 17px; }
+        .table-scroll { 
+            overflow-y: auto; 
+            max-height: 500px; 
+            width: 100%; 
+            border-radius: 20px;
+            background: #2d2d2d;
+            border: 1px solid #444;
+        }
+
+        .table-scroll::-webkit-scrollbar { width: 8px; }
+        .table-scroll::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 10px; }
+        .table-scroll::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+        .table-scroll::-webkit-scrollbar-thumb:hover { background: #fbc727; }
+
+        table { width: 100%; border-collapse: collapse; background: #2d2d2d; min-width: 900px; }
+        th { 
+            background: #3d3d3d; 
+            color: #fbc727; 
+            padding: 18px; 
+            font-size: 17px; 
+            position: sticky;
+            top: 0; 
+            z-index: 5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
         td { padding: 15px; text-align: center; font-size: 18px; border-bottom: 1px solid #3d3d3d; }
         .group-divider { border-bottom: 4px solid #fbc727 !important; } 
         .dish-info { text-align: left; padding-left: 25px; }
@@ -59,7 +81,7 @@
         .profit-pos { color: #46d160; font-weight: bold; }
         .profit-neg { color: #ff4500; font-weight: bold; }
         .top-rank-neon { color: #fff !important; font-weight: bold !important; text-shadow: 0 0 10px #fbc727, 0 0 20px #fbc727 !important; }
-        .apply-btn { font-weight: bold; color: #ffcc00; text-shadow: 0 0 10px #ffcc00; font-size: 20px; cursor: pointer; background: none; border: 2px solid #ffcc00; padding: 5px 15px; border-radius: 10px; margin-left: 20px; transition: 0.3s; }
+        .apply-btn { font-weight: bold; color: #ffcc00; text-shadow: 0 0 10px #ffcc00; font-size: 20px; cursor: pointer; background: none; border: 2px solid #ffcc00; padding: 5px 15px; border-radius: 10px; margin-left: 20px; transition: 0.3s; vertical-align: middle; }
         .apply-btn:hover { background: rgba(255, 204, 0, 0.2); }
 
         .selector-bar { background: #333; padding: 20px; border-radius: 15px; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; border: 1px dashed #fbc727; flex-wrap: wrap; }
@@ -89,6 +111,7 @@
     </div>
 
     <div id="settings" class="tab-content active">
+
         <div class="setting-section">
             <span class="neon-title">🌾 농작물 단가 설정</span>
             <div class="header-controls">
@@ -141,11 +164,25 @@
         </div> 
         <div class="setting-section">
             <span class="neon-title">🍲 커먼 요리</span>
-            <div class="table-scroll"><table><thead><tr><th style="width: 26%;">요리 정보</th><th style="width: 10%;">고정 판매가</th><th style="width: 12%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr></thead><tbody id="body-store-common"></tbody></table></div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr><th style="width: 26%;">요리 정보</th><th style="width: 10%;">고정 판매가</th><th style="width: 12%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr>
+                    </thead>
+                    <tbody id="body-store-common"></tbody>
+                </table>
+            </div>
         </div>
         <div class="setting-section" style="margin-top: 40px;">
             <span class="neon-title">🥗 언커먼 요리</span>
-            <div class="table-scroll"><table><thead><tr><th style="width: 26%;">요리 정보</th><th style="width: 10%;">고정 판매가</th><th style="width: 13%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr></thead><tbody id="body-store-uncommon"></tbody></table></div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr><th style="width: 26%;">요리 정보</th><th style="width: 10%;">고정 판매가</th><th style="width: 13%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr>
+                    </thead>
+                    <tbody id="body-store-uncommon"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -158,14 +195,32 @@
             <span style="font-size: 13px; color: #888;">* 노련함 레벨 작성 </span>
         </div>
         <div class="setting-section">
-            <span class="neon-title">🍲 커먼 요리</span>
-            <button class="apply-btn" onclick="highlightTop1('common')">적 용</button>
-            <div class="table-scroll"><table><thead><tr><th style="width: 27%;">요리 정보</th><th style="width: 13%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-common"></tbody></table></div>
+            <div style="display:flex; align-items:center; margin-bottom: 15px;">
+                <span class="neon-title" style="margin-bottom:0;">🍲 커먼 요리</span>
+                <button class="apply-btn" onclick="highlightTop1('common')">TOP 3</button>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr><th style="width: 27%;">요리 정보</th><th style="width: 13%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr>
+                    </thead>
+                    <tbody id="body-common"></tbody>
+                </table>
+            </div>
         </div>
         <div class="setting-section" style="margin-top: 40px;">
-            <span class="neon-title">🥗 언커먼 요리</span>
-            <button class="apply-btn" onclick="highlightTop1('uncommon')">적 용</button>
-            <div class="table-scroll"><table><thead><tr><th style="width: 27%;">요리 정보</th><th style="width: 13%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-uncommon"></tbody></table></div>
+            <div style="display:flex; align-items:center; margin-bottom: 15px;">
+                <span class="neon-title" style="margin-bottom:0;">🥗 언커먼 요리</span>
+                <button class="apply-btn" onclick="highlightTop1('uncommon')">TOP 3</button>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr><th style="width: 27%;">요리 정보</th><th style="width: 13%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr>
+                    </thead>
+                    <tbody id="body-uncommon"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -351,7 +406,7 @@
 
         tbody.innerHTML += `
             <tr class="${isJuice ? 'group-divider' : 'no-border'}">
-                <td class="dish-info"><span class="badge b-${dish.type}">${dish.type === 'common' ? '일반' : '고급'}</span> <strong>${dish.name}</strong>${isJuice ? getRecipeHtml(dish, 'user-n', index) : ''}</td>
+                <td class="dish-info"><span class="badge b-${dish.type}">${dish.type === 'common' ? '일반' : '고급'}</span> <strong>${dish.name}</strong>${getRecipeHtml(dish, 'user-n', index)}</td>
                 <td><input type="text" id="sell-${idN}" placeholder="0" oninput="formatInput(this)"></td>
                 <td><span id="cost-${idN}">0</span></td><td><span id="p1-${idN}">0</span></td><td><span id="p32-${idN}">0</span></td><td><span id="p64-${idN}">0</span></td>
             </tr>`;
@@ -519,7 +574,7 @@
     }
 
     function highlightTop1(type) {
-        const containerId = type.includes('store') ? `body-${type}` : `body-${type}`;
+        const containerId = type === 'common' ? `body-common` : `body-uncommon`;
         const cells = document.querySelectorAll(`#${containerId} [id^="p64-"]`);
         const profits = [];
         cells.forEach(c => {
@@ -618,7 +673,7 @@
                             <div class="stat-line"><span>시장 평균 효율:</span> <strong>${avgM.toFixed(1)}</strong></div>
                             <hr style="border:0; border-top:1px solid #444; margin: 10px 0;">
                             <div class="stat-line">
-                                <span>최고 효율 - 내 요리 비교</span>
+                                <span>시장 최고 효율 - 내 효율 비교</span>
                                 <span style="font-weight:bold; color:${diff>=0?'#46d160':'#ff4500'}">${diff >= 0 ? '+' : ''}${diff.toFixed(1)}</span>
                             </div>
                         </div>
