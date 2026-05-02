@@ -50,7 +50,8 @@
         td { padding: 15px; text-align: center; font-size: 18px; border-bottom: 1px solid #3d3d3d; }
         .group-divider { border-bottom: 4px solid #fbc727 !important; } 
         .dish-info { text-align: left; padding-left: 25px; }
-        .recipe-text { font-size: 13px; color: #aaa; margin-top: 5px; display: block; line-height: 1.4; }
+        .recipe-text { font-size: 13px; color: #aaa; margin-top: 5px; display: block; line-height: 1.6; }
+        .grade-sel { width: auto !important; height: 24px; font-size: 11px; padding: 0 5px; margin-left: 5px; background: #333; color: #fbc727; border: 1px solid #555; vertical-align: middle; }
         .badge { font-size: 12px; padding: 3px 8px; border-radius: 6px; margin-right: 8px; font-weight: bold; }
         .b-common { background: #555; color: #eee; }
         .b-uncommon { background: #1e3a2f; color: #46d160; }
@@ -140,11 +141,11 @@
         </div> 
         <div class="setting-section">
             <span class="neon-title">🍲 커먼 요리</span>
-            <div class="table-scroll"><table><thead><tr><th style="width: 24%;">요리 정보</th><th style="width: 12%;">고정 판매가</th><th style="width: 12%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr></thead><tbody id="body-store-common"></tbody></table></div>
+            <div class="table-scroll"><table><thead><tr><th style="width: 26%;">요리 정보</th><th style="width: 10%;">고정 판매가</th><th style="width: 12%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr></thead><tbody id="body-store-common"></tbody></table></div>
         </div>
         <div class="setting-section" style="margin-top: 40px;">
             <span class="neon-title">🥗 언커먼 요리</span>
-            <div class="table-scroll"><table><thead><tr><th style="width: 24%;">요리 정보</th><th style="width: 12%;">고정 판매가</th><th style="width: 13%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr></thead><tbody id="body-store-uncommon"></tbody></table></div>
+            <div class="table-scroll"><table><thead><tr><th style="width: 26%;">요리 정보</th><th style="width: 10%;">고정 판매가</th><th style="width: 13%;">원재료 가격</th><th style="width: 16%;">순수익 (1개)</th><th style="width: 16%;">순수익 (32개)</th><th style="width: 16%;">순수익 (64개)</th></tr></thead><tbody id="body-store-uncommon"></tbody></table></div>
         </div>
     </div>
 
@@ -159,12 +160,12 @@
         <div class="setting-section">
             <span class="neon-title">🍲 커먼 요리</span>
             <button class="apply-btn" onclick="highlightTop1('common')">적 용</button>
-            <div class="table-scroll"><table><thead><tr><th style="width: 25%;">요리 정보</th><th style="width: 15%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-common"></tbody></table></div>
+            <div class="table-scroll"><table><thead><tr><th style="width: 27%;">요리 정보</th><th style="width: 13%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-common"></tbody></table></div>
         </div>
         <div class="setting-section" style="margin-top: 40px;">
             <span class="neon-title">🥗 언커먼 요리</span>
             <button class="apply-btn" onclick="highlightTop1('uncommon')">적 용</button>
-            <div class="table-scroll"><table><thead><tr><th style="width: 25%;">요리 정보</th><th style="width: 15%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-uncommon"></tbody></table></div>
+            <div class="table-scroll"><table><thead><tr><th style="width: 27%;">요리 정보</th><th style="width: 13%;">판매가</th><th style="width: 15%;">원재료 가격</th><th style="width: 15%;">순수익 (1개)</th><th style="width: 15%;">순수익 (32개)</th><th style="width: 15%;">순수익 (64개)</th></tr></thead><tbody id="body-uncommon"></tbody></table></div>
         </div>
     </div>
 
@@ -345,20 +346,19 @@
     function renderDishGroup(dish, index, targetType, tbodyId) {
         if (dish.type !== targetType) return;
         const tbody = document.getElementById(tbodyId);
-        const recipeHtml = getRecipeText(dish);
         const idN = `user-n-${index}`, idM = `user-m-${index}`;
         const isJuice = dish.name.includes("주스");
 
         tbody.innerHTML += `
             <tr class="${isJuice ? 'group-divider' : 'no-border'}">
-                <td class="dish-info"><span class="badge b-${dish.type}">${dish.type === 'common' ? '일반' : '고급'}</span> <strong>${dish.name}</strong>${isJuice ? recipeHtml : ''}</td>
+                <td class="dish-info"><span class="badge b-${dish.type}">${dish.type === 'common' ? '일반' : '고급'}</span> <strong>${dish.name}</strong>${isJuice ? getRecipeHtml(dish, 'user-n', index) : ''}</td>
                 <td><input type="text" id="sell-${idN}" placeholder="0" oninput="formatInput(this)"></td>
                 <td><span id="cost-${idN}">0</span></td><td><span id="p1-${idN}">0</span></td><td><span id="p32-${idN}">0</span></td><td><span id="p64-${idN}">0</span></td>
             </tr>`;
         if (!isJuice) {
             tbody.innerHTML += `
                 <tr class="group-divider">
-                    <td class="dish-info"><span class="badge b-master">일품</span> <strong>일품 ${dish.name}</strong>${recipeHtml}</td>
+                    <td class="dish-info"><span class="badge b-master">일품</span> <strong>일품 ${dish.name}</strong>${getRecipeHtml(dish, 'user-m', index)}</td>
                     <td><input type="text" id="sell-${idM}" placeholder="0" oninput="formatInput(this)"></td>
                     <td><span id="cost-${idM}">0</span></td><td><span id="p1-${idM}">0</span></td><td><span id="p32-${idM}">0</span></td><td><span id="p64-${idM}">0</span></td>
                 </tr>`;
@@ -368,30 +368,44 @@
     function renderStoreGroup(dish, index, targetType, tbodyId) {
         if (dish.type !== targetType || dish.name.includes("주스")) return;
         const tbody = document.getElementById(tbodyId);
-        const recipeHtml = getRecipeText(dish);
         const idN = `store-n-${index}`, idM = `store-m-${index}`;
         let priceN = (dish.type === 'common' ? 63 : 104);
-        let priceM = (dish.type === 'common' ? 98 : 152);
+        let priceM = (dish.type === 'common' ? 92 : 152);
         if (dish.name === '페페스') { priceN = 123; priceM = 184; }
 
         tbody.innerHTML += `
             <tr class="no-border">
-                <td class="dish-info"><span class="badge b-${dish.type}">${dish.type === 'common' ? '일반' : '고급'}</span> <strong>${dish.name}</strong></td>
+                <td class="dish-info"><span class="badge b-${dish.type}">${dish.type === 'common' ? '일반' : '고급'}</span> <strong>${dish.name}</strong>${getRecipeHtml(dish, 'store-n', index)}</td>
                 <td><strong style="color:#bbb">${priceN}</strong></td>
                 <td><span id="cost-${idN}">0</span></td><td><span id="p1-${idN}">0</span></td><td><span id="p32-${idN}">0</span></td><td><span id="p64-${idN}">0</span></td>
             </tr>
             <tr class="group-divider">
-                <td class="dish-info"><span class="badge b-master">일품</span> <strong>일품 ${dish.name}</strong>${recipeHtml}</td>
+                <td class="dish-info"><span class="badge b-master">일품</span> <strong>일품 ${dish.name}</strong>${getRecipeHtml(dish, 'store-m', index)}</td>
                 <td><strong style="color:#ffcc00">${priceM}</strong></td>
                 <td><span id="cost-${idM}">0</span></td><td><span id="p1-${idM}">0</span></td><td><span id="p32-${idM}">0</span></td><td><span id="p64-${idM}">0</span></td>
             </tr>`;
     }
 
-    function getRecipeText(dish) {
+    function getRecipeHtml(dish, tabKey, dishIdx) {
         const allCrops = [...ingredients.crops.basic, ...ingredients.crops.unlocked];
         const c = [], f = [];
-        Object.entries(dish.ings).forEach(([n, q]) => { (allCrops.includes(n) ? c : f).push(`${n}(${q})`); });
-        return `<span class="recipe-text">${c.length ? '└ ' + c.join(', ') + '<br>' : ''}${f.length ? '└ ' + f.join(', ') : ''}</span>`;
+        const isUserTab = tabKey.includes('user');
+
+        Object.entries(dish.ings).forEach(([n, q]) => {
+            const selectHtml = `
+                <select id="grade-${tabKey}-${dishIdx}-${n}" class="grade-sel" onchange="saveAndCalc()">
+                    <option value="gold" ${isUserTab ? 'selected' : ''}>금</option>
+                    <option value="silver" ${!isUserTab ? 'selected' : ''}>은</option>
+                </select>`;
+            const itemText = `${n}(${q})${selectHtml}`;
+            if (allCrops.includes(n)) c.push(itemText); else f.push(itemText);
+        });
+
+        return `
+            <span class="recipe-text">
+                ${f.length ? '└ ' + f.join(', ') + '<br>' : ''}
+                ${c.length ? '└ ' + c.join(', ') : ''}
+            </span>`;
     }
 
     function toggleRepair(type, active) {
@@ -403,7 +417,7 @@
 
     function saveAndCalc() {
         const data = {};
-        document.querySelectorAll('input[type="text"], input[type="number"]').forEach(input => {
+        document.querySelectorAll('input[type="text"], input[type="number"], select').forEach(input => {
             const key = input.id || input.dataset.name;
             if(key) data[key] = input.value;
         });
@@ -420,28 +434,30 @@
         const profStore = parseInt(document.getElementById('store-proficiency').value) || 0;
         const profUser = parseInt(document.getElementById('user-proficiency').value) || 0;
 
-        const repairStore = repairSettings.store ? 
-            Math.max(0, (0.4 - (0.003 * profStore))) * costPerDurability : 0;
-        const repairUser = repairSettings.user ? 
-            Math.max(0, (0.4 - (0.003 * profUser))) * costPerDurability : 0;
+        const repairStore = repairSettings.store ? Math.max(0, (0.4 - (0.003 * profStore))) * costPerDurability : 0;
+        const repairUser = repairSettings.user ? Math.max(0, (0.4 - (0.003 * profUser))) * costPerDurability : 0;
 
         dishes.forEach((dish, i) => {
-            let costGold = 0, costSilver = 0;
-            Object.entries(dish.ings).forEach(([n, q]) => {
-                costGold += (goldPrices[n] || 0) * q;
-                costSilver += (silverPrices[n] || 0) * q;
-            });
+            const calcDishCost = (tabKey) => {
+                let total = 0;
+                Object.entries(dish.ings).forEach(([n, q]) => {
+                    const grade = document.getElementById(`grade-${tabKey}-${i}-${n}`)?.value || 'silver';
+                    const unitPrice = (grade === 'gold' ? goldPrices[n] : silverPrices[n]) || 0;
+                    total += unitPrice * q;
+                });
+                return total;
+            };
 
             if (!dish.name.includes("주스")) {
                 let pN = (dish.type === 'common' ? 63 : 104);
                 let pM = (dish.type === 'common' ? 92 : 152);
                 if (dish.name === '페페스') { pN = 123; pM = 184; }
-                updateRow(`store-n-${i}`, costSilver, pN, repairStore);
-                updateRow(`store-m-${i}`, costSilver, pM, repairStore);
+                updateRow(`store-n-${i}`, calcDishCost('store-n'), pN, repairStore);
+                updateRow(`store-m-${i}`, calcDishCost('store-m'), pM, repairStore);
             }
 
-            updateRow(`user-n-${i}`, costGold, unformatNumber(document.getElementById(`sell-user-n-${i}`)?.value || 0), repairUser);
-            updateRow(`user-m-${i}`, costGold, unformatNumber(document.getElementById(`sell-user-m-${i}`)?.value || 0), repairUser);
+            updateRow(`user-n-${i}`, calcDishCost('user-n'), unformatNumber(document.getElementById(`sell-user-n-${i}`)?.value || 0), repairUser);
+            updateRow(`user-m-${i}`, calcDishCost('user-m'), unformatNumber(document.getElementById(`sell-user-m-${i}`)?.value || 0), repairUser);
         });
     }
 
@@ -602,7 +618,7 @@
                             <div class="stat-line"><span>시장 평균 효율:</span> <strong>${avgM.toFixed(1)}</strong></div>
                             <hr style="border:0; border-top:1px solid #444; margin: 10px 0;">
                             <div class="stat-line">
-                                <span>최고 효율과 비교했을 때 내 요리의 경쟁력은?</span>
+                                <span>최고 효율 - 내 요리 비교</span>
                                 <span style="font-weight:bold; color:${diff>=0?'#46d160':'#ff4500'}">${diff >= 0 ? '+' : ''}${diff.toFixed(1)}</span>
                             </div>
                         </div>
