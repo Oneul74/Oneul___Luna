@@ -277,7 +277,7 @@
         
         minHtml += `
             <div class="price-box" style="border-color: #ff4500; box-shadow: 0 0 8px rgba(255, 69, 0, 0.2);">
-                <label style="color:#ff4500">수지 (진홍 수지)</label>
+                <label style="color:#ff4500">수지 (진홍/뒤틀림)</label>
                 <input type="text" id="etc_수지" oninput="formatInput(this)">
             </div>`;
         document.getElementById('min-grid').innerHTML = minHtml;
@@ -325,18 +325,18 @@
             { id: 'exp1', name: '소형 경험치 비약', color: '#a3a3a3', effect: '30분간 경험치 +10% 획득', recipeRows: [
                 `<div class="recipe-row-left"><span>└</span> <select id="exp1_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n">기본 일반</option><option value="adv_n">고급 일반</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="exp1_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-common">일반</span></div> <b>(2개)</b>`,
-                `<span>└ 진홍 수지</span> <b>(2개)</b>`
+                `<span>└ 수지</span> <b>(2개)</b>`
             ] },
             { id: 'exp2', name: '중형 경험치 비약', color: '#76ff03', effect: '30분간 경험치 +20% 획득', recipeRows: [
                 `<div class="recipe-row-left"><span>└</span> <select id="exp2_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m">기본 일품</option><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="exp2_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-uncommon">신선한</span></div> <b>(2개)</b>`,
-                `<span>└ 진홍 수지</span> <b>(3개)</b>`
+                `<span>└ 수지</span> <b>(3개)</b>`
             ] },
             { id: 'exp3', name: '대형 경험치 비약', color: '#00d4ff', effect: '30분간 경험치 +30% 획득', recipeRows: [
                 `<div class="recipe-row-left"><span>└</span> <select id="exp3_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m">기본 일품</option><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="exp3_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-yellow">최상급</span></div> <b>(2개)</b>`,
                 `<span>└ 마염정</span> <b>(1개)</b>`,
-                `<span>└ 진홍 수지</span> <b>(3개)</b>`
+                `<span>└ 수지</span> <b>(3개)</b>`
             ] }
         ];
 
@@ -345,7 +345,7 @@
                 `<div class="recipe-row-left"><span>└</span> <select id="buff1_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m">기본 일품</option><option value="adv_m">고급 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="buff1_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-yellow">최상급</span></div> <b>(2개)</b>`,
                 `<span>└ 마염정</span> <b>(1개)</b>`,
-                `<span>└ 진홍 수지</span> <b>(3개)</b>`
+                `<span>└ 수지</span> <b>(3개)</b>`
             ] }
         ];
 
