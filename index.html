@@ -87,8 +87,8 @@
                 <div class="price-box">
                     <label>기본 요리</label>
                     <div class="dual-input">
-                        <div><span>기본 일반</span><input type="text" id="c_basic_n" oninput="formatInput(this)"></div>
-                        <div><span>기본 일품</span><input type="text" id="c_basic_m" oninput="formatInput(this)"></div>
+                        <div><span> 일반</span><input type="text" id="c_basic_n" oninput="formatInput(this)"></div>
+                        <div><span> 일반 일품</span><input type="text" id="c_basic_m" oninput="formatInput(this)"></div>
                     </div>
                 </div>
                 <div class="price-box" style="grid-column: span 2;">
@@ -288,32 +288,32 @@
         
         const elixirRows = [
             { id: 'e1', name: '풍요의 영약', color: '#76ff03', shadow: 'rgba(118,255,3,0.4)', effect: '낚시 기척·입질 시간 감소 / 영웅·전설 어종 확률 증가', recipeRows: [
-                `<span>└ 기본 일품</span> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="e1_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><span>└</span> <select id="e1_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e1_f" class="grade-sel" onchange="saveAndCalc()"><option value="균열잉어|2">균열잉어</option><option value="그림자 가오리|2">가오리</option><option value="황천메기|2">황천메기</option><option value="나락아귀|1">나락아귀</option></select> <span class="badge b-yellow">최상급</span></div>`,
                 `<div class="recipe-row-left"><span>지옥 클로버</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
                 `<span>└ 수지</span> <b>(4개)</b>`
             ] },
-            { id: 'e2', name: '예민의 영약', color: '#d896ff', shadow: 'rgba(216,150,255,0.4)', effect: '채광·벌목 쿨타임 감소 / 데미지 증가 / 모종 추가 획득', recipeRows: [
-                `<span>└ 기본 일품</span> <b>(1개)</b>`,
+            { id: 'e2', name: '예민의 영약', color: '#d896ff', shadow: 'rgba(216,150,255,0.4)', effect: '채광·벌목 쿨타임 감소 / 데미지 증가 / 모종 추가 획득 / 이속증가', recipeRows: [
+                `<div class="recipe-row-left"><span>└</span> <select id="e2_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><span>└</span> <select id="e2_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e2_f" class="grade-sel" onchange="saveAndCalc()"><option value="불송사리|2">불송사리</option><option value="화사장어|2">화사장어</option><option value="화탄복어|1">화탄복어</option></select> <span class="badge b-yellow">최상급</span></div>`,
                 `<div class="recipe-row-left"><span>뒤틀린 고사리</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
                 `<span>└ 수지</span> <b>(4개)</b>`
             ] },
             { id: 'e3', name: '불굴의 영약', color: '#ff7700', shadow: 'rgba(255,119,0,0.4)', effect: '갈증 소모 감소 / 도구 내구 소모 감소', recipeRows: [
-                `<span>└ 기본 일품</span> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="e3_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
                 `<span>└ 수지</span> <b>(4개)</b>`
             ] },
             { id: 'e4', name: '숙련의 영약', color: '#00d4ff', shadow: 'rgba(0,212,255,0.4)', effect: '도구·제작대 성장치 획득 / 대장 제작 재료 절약', recipeRows: [
-                `<span>└ 기본 일품</span> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="e4_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><span>└</span> <select id="e4_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e4_f" class="grade-sel" onchange="saveAndCalc()"><option value="잿미꾸리|2">잿미꾸리</option><option value="그림자 가오리|2">가오리</option><option value="겁화다랑어|1">겁화다랑어</option></select> <span class="badge b-yellow">최상급</span></div>`,
                 `<div class="recipe-row-left"><span>그늘 갓버섯</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
                 `<span>└ 수지</span> <b>(4개)</b>`
             ] },
             { id: 'e5', name: '정교의 영약', color: '#ffff00', shadow: 'rgba(255,255,0,0.4)', effect: '대장 제작 시간 감소 / 추가 제작 확률 및 횟수 증가', recipeRows: [
-                `<span>└ 기본 일품</span> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="e5_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><span>└</span> <select id="e5_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e5_f" class="grade-sel" onchange="saveAndCalc()"><option value="불송사리|2">불송사리</option><option value="화사장어|2">화사장어</option><option value="용린어|2">용린어</option></select> <span class="badge b-yellow">최상급</span></div> <b>(2개)</b>`,
                 `<div class="recipe-row-left"><span>불꽃 이삭</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
@@ -323,17 +323,17 @@
 
         const expRows = [
             { id: 'exp1', name: '소형 경험치 비약', color: '#a3a3a3', effect: '30분간 경험치 +10% 획득', recipeRows: [
-                `<div class="recipe-row-left"><span>└</span> <select id="exp1_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n">기본 일반</option><option value="adv_n">고급 일반</option></select></div> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="exp1_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n"> 일반</option><option value="adv_n">고급 일반</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="exp1_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-common">일반</span></div> <b>(2개)</b>`,
                 `<span>└ 수지</span> <b>(2개)</b>`
             ] },
             { id: 'exp2', name: '중형 경험치 비약', color: '#76ff03', effect: '30분간 경험치 +20% 획득', recipeRows: [
-                `<div class="recipe-row-left"><span>└</span> <select id="exp2_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m">기본 일품</option><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="exp2_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m"> 일반 일품</option><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="exp2_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-uncommon">신선한</span></div> <b>(2개)</b>`,
                 `<span>└ 수지</span> <b>(3개)</b>`
             ] },
             { id: 'exp3', name: '대형 경험치 비약', color: '#00d4ff', effect: '30분간 경험치 +30% 획득', recipeRows: [
-                `<div class="recipe-row-left"><span>└</span> <select id="exp3_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m">기본 일품</option><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="exp3_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m"> 일반 일품</option><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="exp3_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-yellow">최상급</span></div> <b>(2개)</b>`,
                 `<span>└ 마염정</span> <b>(1개)</b>`,
                 `<span>└ 수지</span> <b>(3개)</b>`
@@ -342,7 +342,7 @@
 
         const buffRows = [
             { id: 'buff1', name: '[RPG 비약] 질풍/화염/대지/격류', color: '#ffcc00', effect: '효과는 알아서...~~', recipeRows: [
-                `<div class="recipe-row-left"><span>└</span> <select id="buff1_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m">기본 일품</option><option value="adv_m">고급 일품</option></select></div> <b>(1개)</b>`,
+                `<div class="recipe-row-left"><span>└</span> <select id="buff1_c" class="grade-sel" onchange="saveAndCalc()"><option value="basic_m"> 일반 일품</option><option value="adv_m">고급 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="buff1_cr" class="grade-sel" onchange="saveAndCalc()">${getCropOptions()}</select> <span class="badge b-yellow">최상급</span></div> <b>(2개)</b>`,
                 `<span>└ 마염정</span> <b>(1개)</b>`,
                 `<span>└ 수지</span> <b>(3개)</b>`
@@ -405,11 +405,11 @@
             });
         };
 
-        updateRow('e1', getPriceCook('basic_m') + getPriceCook(v('e1_c2')) + getPriceFish(v('e1_f').split('|')[0], 's') * num(v('e1_f').split('|')[1]) + getPriceCrop('지옥 클로버', 's') * 4 + getPriceEtc('수지') * 4, 1);
-        updateRow('e2', getPriceCook('basic_m') + getPriceCook(v('e2_c2')) + getPriceFish(v('e2_f').split('|')[0], 's') * num(v('e2_f').split('|')[1]) + getPriceCrop('뒤틀린 고사리', 's') * 4 + getPriceEtc('수지') * 4, 1);
-        updateRow('e3', getPriceCook('basic_m') + getPriceEtc('수지') * 4, 1);
-        updateRow('e4', getPriceCook('basic_m') + getPriceCook(v('e4_c2')) + getPriceFish(v('e4_f').split('|')[0], 's') * num(v('e4_f').split('|')[1]) + getPriceCrop('그늘 갓버섯', 's') * 4 + getPriceEtc('수지') * 4, 1);
-        updateRow('e5', getPriceCook('basic_m') + getPriceCook(v('e5_c2')) + getPriceFish(v('e5_f').split('|')[0], 's') * num(v('e5_f').split('|')[1]) + getPriceCrop('불꽃 이삭', 's') * 4 + getPriceEtc('수지') * 4, 1);
+        updateRow('e1', getPriceCook(v('e1_c1')) + getPriceCook(v('e1_c2')) + getPriceFish(v('e1_f').split('|')[0], 's') * num(v('e1_f').split('|')[1]) + getPriceCrop('지옥 클로버', 's') * 4 + getPriceEtc('수지') * 4, 1);
+        updateRow('e2', getPriceCook(v('e2_c1')) + getPriceCook(v('e2_c2')) + getPriceFish(v('e2_f').split('|')[0], 's') * num(v('e2_f').split('|')[1]) + getPriceCrop('뒤틀린 고사리', 's') * 4 + getPriceEtc('수지') * 4, 1);
+        updateRow('e3', getPriceCook(v('e3_c1')) + getPriceEtc('수지') * 4, 1);
+        updateRow('e4', getPriceCook(v('e4_c1')) + getPriceCook(v('e4_c2')) + getPriceFish(v('e4_f').split('|')[0], 's') * num(v('e4_f').split('|')[1]) + getPriceCrop('그늘 갓버섯', 's') * 4 + getPriceEtc('수지') * 4, 1);
+        updateRow('e5', getPriceCook(v('e5_c1')) + getPriceCook(v('e5_c2')) + getPriceFish(v('e5_f').split('|')[0], 's') * num(v('e5_f').split('|')[1]) + getPriceCrop('불꽃 이삭', 's') * 4 + getPriceEtc('수지') * 4, 1);
 
         updateRow('exp1', getPriceCook(v('exp1_c')) + getPriceCrop(v('exp1_cr'), 'n') * 2 + getPriceEtc('수지') * 2, 2);
         updateRow('exp2', getPriceCook(v('exp2_c')) + getPriceCrop(v('exp2_cr'), 'f') * 2 + getPriceEtc('수지') * 3, 2);
