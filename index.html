@@ -41,6 +41,19 @@
         input:focus, select:focus { border-color: #d896ff; background: #222; }
         select { text-align: left; padding: 6px; cursor: pointer; }
 
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .toggle-btn-group { display: flex; gap: 8px; }
+        .toggle-btn { background: #1a1a1a; color: #888; border: 1px solid #555; padding: 6px 14px; border-radius: 6px; font-size: 14px; cursor: pointer; transition: 0.3s; }
+        .toggle-btn.active { background: #222; color: #fff; border: 1px solid #d896ff; box-shadow: 0 0 12px #d896ff, inset 0 0 5px rgba(216, 150, 255, 0.3); font-weight: bold; text-shadow: 0 0 5px #d896ff; }
+
         .table-scroll { overflow-x: auto; max-height: 75vh; width: 100%; border-radius: 18px; background: #2d2d2d; border: 1px solid #444; }
         .table-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
         .table-scroll::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 10px; }
@@ -143,6 +156,23 @@
 
     <div id="tab-recipes" class="tab-content">
         
+        <div class="bulk-container" style="margin-bottom: 25px; border-color: #d896ff;">
+            <span>🛠️ 연금가마 내구도 수리비용:</span>
+            <div class="bulk-inputs" style="align-items: center; flex-wrap: wrap;">
+                <label style="color:#eee; font-size:14px; margin-left: 5px;">노련함 스탯</label>
+                <input type="number" id="skill_level" placeholder="" min="0" oninput="if(this.value==='0')this.value=''; saveAndCalc()" style="width: 80px !important;">
+                
+                <label style="color:#eee; font-size:14px; margin-left: 15px; margin-right: 5px; display: flex; align-items: center;">
+                    수리비용
+                </label>
+                <div class="toggle-btn-group">
+                    <button type="button" id="btn_repair_inc" class="toggle-btn" onclick="setRepairStatus(true)">포함</button>
+                    <button type="button" id="btn_repair_exc" class="toggle-btn active" onclick="setRepairStatus(false)">미포함</button>
+                </div>
+                <input type="checkbox" id="include_repair" onchange="saveAndCalc()" style="display: none;">
+            </div>
+        </div>
+
         <div class="setting-section">
             <span class="section-title" style="color: #46d160; text-shadow: 0 0 10px #46d160;">🌿 영약</span>
             <div class="table-scroll">
@@ -292,14 +322,14 @@
                 `<div class="recipe-row-left"><span>└</span> <select id="e1_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e1_f" class="grade-sel" onchange="saveAndCalc()"><option value="균열잉어|2">균열잉어</option><option value="그림자 가오리|2">가오리</option><option value="황천메기|2">황천메기</option><option value="나락아귀|1">나락아귀</option></select> <span class="badge b-yellow">최상급</span></div>`,
                 `<div class="recipe-row-left"><span>지옥 클로버</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
-                `<span>└ 수지</span> <b>(4개)</b>`
+                `<span>└ 수지</span> <b>(2개)</b>`
             ] },
-            { id: 'e2', name: '예민의 영약', color: '#d896ff', shadow: 'rgba(216,150,255,0.4)', effect: '채광·벌목 쿨타임 감소 / 데미지 증가 / 모종 추가 획득 / 이속증가', recipeRows: [
+            { id: 'e2', name: '예민의 영약', color: '#d896ff', shadow: 'rgba(216,150,255,0.4)', effect: '채광·벌목 쿨타임 감소 / 이속 증가 / 데미지 증가 / 모종 추가 획득', recipeRows: [
                 `<div class="recipe-row-left"><span>└</span> <select id="e2_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><span>└</span> <select id="e2_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e2_f" class="grade-sel" onchange="saveAndCalc()"><option value="불송사리|2">불송사리</option><option value="화사장어|2">화사장어</option><option value="화탄복어|1">화탄복어</option></select> <span class="badge b-yellow">최상급</span></div>`,
                 `<div class="recipe-row-left"><span>뒤틀린 고사리</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
-                `<span>└ 수지</span> <b>(4개)</b>`
+                `<span>└ 수지</span> <b>(2개)</b>`
             ] },
             { id: 'e3', name: '불굴의 영약', color: '#ff7700', shadow: 'rgba(255,119,0,0.4)', effect: '갈증 소모 감소 / 도구 내구 소모 감소', recipeRows: [
                 `<div class="recipe-row-left"><span>└</span> <select id="e3_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
@@ -310,14 +340,14 @@
                 `<div class="recipe-row-left"><span>└</span> <select id="e4_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e4_f" class="grade-sel" onchange="saveAndCalc()"><option value="잿미꾸리|2">잿미꾸리</option><option value="그림자 가오리|2">가오리</option><option value="겁화다랑어|1">겁화다랑어</option></select> <span class="badge b-yellow">최상급</span></div>`,
                 `<div class="recipe-row-left"><span>그늘 갓버섯</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
-                `<span>└ 수지</span> <b>(4개)</b>`
+                `<span>└ 수지</span> <b>(2개)</b>`
             ] },
             { id: 'e5', name: '정교의 영약', color: '#ffff00', shadow: 'rgba(255,255,0,0.4)', effect: '대장 제작 시간 감소 / 추가 제작 확률 및 횟수 증가', recipeRows: [
                 `<div class="recipe-row-left"><span>└</span> <select id="e5_c1" class="grade-sel" onchange="saveAndCalc()"><option value="basic_n" selected> 일반</option><option value="basic_m"> 일반 일품</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><span>└</span> <select id="e5_c2" class="grade-sel" onchange="saveAndCalc()"><option value="adv_m">고급 일품</option><option value="adv_s">고급 특급</option></select></div> <b>(1개)</b>`,
                 `<div class="recipe-row-left"><select id="e5_f" class="grade-sel" onchange="saveAndCalc()"><option value="불송사리|2">불송사리</option><option value="화사장어|2">화사장어</option><option value="용린어|2">용린어</option></select> <span class="badge b-yellow">최상급</span></div> <b>(2개)</b>`,
                 `<div class="recipe-row-left"><span>불꽃 이삭</span> <span class="badge b-yellow">최상급</span></div> <b>(4개)</b>`,
-                `<span>└ 수지</span> <b>(4개)</b>`
+                `<span>└ 수지</span> <b>(2개)</b>`
             ] }
         ];
 
@@ -378,7 +408,20 @@
         renderTable(buffRows, 'body-buff');
     }
 
+    function setRepairStatus(isIncluded) {
+        document.getElementById('include_repair').checked = isIncluded;
+        document.getElementById('btn_repair_inc').classList.toggle('active', isIncluded);
+        document.getElementById('btn_repair_exc').classList.toggle('active', !isIncluded);
+        saveAndCalc();
+    }
+
     function calculate() {
+        let skillLevel = parseFloat(document.getElementById('skill_level').value) || 0;
+        let includeRepair = document.getElementById('include_repair').checked;
+        
+        let durabilityUsed = Math.max(0, 0.9 - (0.004 * skillLevel)); 
+        let repairCostPerElixir = includeRepair ? (durabilityUsed * (500 / 60)) : 0;
+
         const updateRow = (id, totalCost, yieldAmount) => {
             let unitCost = Math.floor(totalCost / yieldAmount);
             let sellPrice = num(v('sell_' + id));
@@ -405,11 +448,11 @@
             });
         };
 
-        updateRow('e1', getPriceCook(v('e1_c1')) + getPriceCook(v('e1_c2')) + getPriceFish(v('e1_f').split('|')[0], 's') * num(v('e1_f').split('|')[1]) + getPriceCrop('지옥 클로버', 's') * 4 + getPriceEtc('수지') * 4, 1);
-        updateRow('e2', getPriceCook(v('e2_c1')) + getPriceCook(v('e2_c2')) + getPriceFish(v('e2_f').split('|')[0], 's') * num(v('e2_f').split('|')[1]) + getPriceCrop('뒤틀린 고사리', 's') * 4 + getPriceEtc('수지') * 4, 1);
-        updateRow('e3', getPriceCook(v('e3_c1')) + getPriceEtc('수지') * 4, 1);
-        updateRow('e4', getPriceCook(v('e4_c1')) + getPriceCook(v('e4_c2')) + getPriceFish(v('e4_f').split('|')[0], 's') * num(v('e4_f').split('|')[1]) + getPriceCrop('그늘 갓버섯', 's') * 4 + getPriceEtc('수지') * 4, 1);
-        updateRow('e5', getPriceCook(v('e5_c1')) + getPriceCook(v('e5_c2')) + getPriceFish(v('e5_f').split('|')[0], 's') * num(v('e5_f').split('|')[1]) + getPriceCrop('불꽃 이삭', 's') * 4 + getPriceEtc('수지') * 4, 1);
+        updateRow('e1', getPriceCook(v('e1_c1')) + getPriceCook(v('e1_c2')) + getPriceFish(v('e1_f').split('|')[0], 's') * num(v('e1_f').split('|')[1]) + getPriceCrop('지옥 클로버', 's') * 4 + getPriceEtc('수지') * 2 + repairCostPerElixir, 1);
+        updateRow('e2', getPriceCook(v('e2_c1')) + getPriceCook(v('e2_c2')) + getPriceFish(v('e2_f').split('|')[0], 's') * num(v('e2_f').split('|')[1]) + getPriceCrop('뒤틀린 고사리', 's') * 4 + getPriceEtc('수지') * 2 + repairCostPerElixir, 1);
+        updateRow('e3', getPriceCook(v('e3_c1')) + getPriceEtc('수지') * 4 + repairCostPerElixir, 1);
+        updateRow('e4', getPriceCook(v('e4_c1')) + getPriceCook(v('e4_c2')) + getPriceFish(v('e4_f').split('|')[0], 's') * num(v('e4_f').split('|')[1]) + getPriceCrop('그늘 갓버섯', 's') * 4 + getPriceEtc('수지') * 2 + repairCostPerElixir, 1);
+        updateRow('e5', getPriceCook(v('e5_c1')) + getPriceCook(v('e5_c2')) + getPriceFish(v('e5_f').split('|')[0], 's') * num(v('e5_f').split('|')[1]) + getPriceCrop('불꽃 이삭', 's') * 4 + getPriceEtc('수지') * 2 + repairCostPerElixir, 1);
 
         updateRow('exp1', getPriceCook(v('exp1_c')) + getPriceCrop(v('exp1_cr'), 'n') * 2 + getPriceEtc('수지') * 2, 2);
         updateRow('exp2', getPriceCook(v('exp2_c')) + getPriceCrop(v('exp2_cr'), 'f') * 2 + getPriceEtc('수지') * 3, 2);
@@ -420,8 +463,11 @@
 
     function saveAndCalc() {
         const data = {};
-        document.querySelectorAll('input[type="text"], select').forEach(el => {
-            if (el.id) data[el.id] = el.value;
+        document.querySelectorAll('input[type="text"], input[type="number"], select, input[type="checkbox"]').forEach(el => {
+            if (el.id) {
+                if (el.type === 'checkbox') data[el.id] = el.checked;
+                else data[el.id] = el.value;
+            }
         });
         localStorage.setItem('alchemy_calc_v1', JSON.stringify(data));
         calculate();
@@ -433,9 +479,17 @@
             const data = JSON.parse(saved);
             Object.entries(data).forEach(([key, val]) => {
                 let el = document.getElementById(key);
-                if (el) el.value = val;
+                if (el) {
+                    if (el.type === 'checkbox') el.checked = val;
+                    else el.value = val;
+                }
             });
         }
+        
+        let isIncluded = document.getElementById('include_repair').checked;
+        document.getElementById('btn_repair_inc').classList.toggle('active', isIncluded);
+        document.getElementById('btn_repair_exc').classList.toggle('active', !isIncluded);
+
         calculate();
     }
 
